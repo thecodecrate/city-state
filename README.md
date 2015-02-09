@@ -1,6 +1,6 @@
-# city-state Ruby Gem
+# city-state ruby gem
 
-**city-state** is a very simple Ruby Gem that you can use to get a list of states of a country. Also, you can get a list of cities from a state.
+**city-state** is a very simple ruby gem that you can use to get a list of states of a country. Also, you can get a list of cities from a state.
 
 ## Put this gem at your Gemfile:
 ```ruby
@@ -12,6 +12,7 @@ gem 'city-state'
 CS.states(:us)
 # => {:AK=>"Alaska", :AL=>"Alabama", :AR=>"Arkansas", :AZ=>"Arizona", :CA=>"California", :CO=>"Colorado", :CT=>"Connecticut", :DC=>"District of Columbia", :DE=>"Delaware", :FL=>"Florida", :GA=>"Georgia", :HI=>"Hawaii", :IA=>"Iowa", :ID=>"Idaho", :IL=>"Illinois", :IN=>"Indiana", :KS=>"Kansas", :KY=>"Kentucky", :LA=>"Louisiana", :MA=>"Massachusetts", :MD=>"Maryland", :ME=>"Maine", :MI=>"Michigan", :MN=>"Minnesota", :MO=>"Missouri", :MS=>"Mississippi", :MT=>"Montana", :NC=>"North Carolina", :ND=>"North Dakota", :NE=>"Nebraska", :NH=>"New Hampshire", :NJ=>"New Jersey", :NM=>"New Mexico", :NV=>"Nevada", :NY=>"New York", :OH=>"Ohio", :OK=>"Oklahoma", :OR=>"Oregon", :PA=>"Pennsylvania", :RI=>"Rhode Island", :SC=>"South Carolina", :SD=>"South Dakota", :TN=>"Tennessee", :TX=>"Texas", :UT=>"Utah", :VA=>"Virginia", :VT=>"Vermont", :WA=>"Washington", :WI=>"Wisconsin", :WV=>"West Virginia", :WY=>"Wyoming"} 
 ```
+*PS: city-state is case insensitive. You can use :US, :us, :Us, "us", "US", ... *
 
 ## Get a list of cities:
 ```ruby
@@ -20,6 +21,7 @@ CS.cities(:ak)
 ```
 
 ## Update the database from MaxMind:
+MaxMind update their databases weekly on tuesdays. To get a new and updated version, you can update with:
 ```ruby
 CS.update
 ```
@@ -34,13 +36,13 @@ CS.cities(:sp, :br)
 The country is an optional argument. **city-state** always uses the last country that you used.
 ```ruby
 CS.states(:br)
-#  => {:AC=>"Acre", :AL=>"Alagoas", :AM=>"Amazonas", :AP=>"Amapa", :BA=>"Bahia", :CE=>"Ceara", :DF=>"Federal District", :ES=>"Espirito Santo", :GO=>"Goias", :MA=>"Maranhao", :MG=>"Minas Gerais", :MS=>"Mato Grosso do Sul", :MT=>"Mato Grosso", :PA=>"Para", :PB=>"Paraiba", :PE=>"Pernambuco", :PI=>"Piaui", :PR=>"Parana", :RJ=>"Rio de Janeiro", :RN=>"Rio Grande do Norte", :RO=>"Rondonia", :RR=>"Roraima", :RS=>"Rio Grande do Sul", :SC=>"Santa Catarina", :SE=>"Sergipe", :SP=>"Sao Paulo", :TO=>"Tocantins"}
+# => {:AC=>"Acre", :AL=>"Alagoas", :AM=>"Amazonas", :AP=>"Amapa", :BA=>"Bahia", :CE=>"Ceara", :DF=>"Federal District", :ES=>"Espirito Santo", :GO=>"Goias", :MA=>"Maranhao", :MG=>"Minas Gerais", :MS=>"Mato Grosso do Sul", :MT=>"Mato Grosso", :PA=>"Para", :PB=>"Paraiba", :PE=>"Pernambuco", :PI=>"Piaui", :PR=>"Parana", :RJ=>"Rio de Janeiro", :RN=>"Rio Grande do Norte", :RO=>"Rondonia", :RR=>"Roraima", :RS=>"Rio Grande do Sul", :SC=>"Santa Catarina", :SE=>"Sergipe", :SP=>"Sao Paulo", :TO=>"Tocantins"}
 CS.cities(:to)
-#  => ["Aparecida do Rio Negro", "Araguaína", "Brejinho de Nazare", "Gurupi", "Itaguatins", "Miracema do Tocantins", "Monte Alegre", "Palmas", "Paraiso do Tocantins", "Parana", "Pedro Afonso", "Porto Nacional", "Presidente Kennedy", "Salvador", "Santo Antonio", "Sao Domingos", "Taguatinga", "Tucum"] 
+# => ["Aparecida do Rio Negro", "Araguaína", "Brejinho de Nazare", "Gurupi", "Itaguatins", "Miracema do Tocantins", "Monte Alegre", "Palmas", "Paraiso do Tocantins", "Parana", "Pedro Afonso", "Porto Nacional", "Presidente Kennedy", "Salvador", "Santo Antonio", "Sao Domingos", "Taguatinga", "Tucum"] 
 ```
 
-# City-State License
-city-state is a open source project by Daniel Loureiro with a MIT license. Also, it uses MaxMind open source database.
+# CityState License
+**city-state** is a open source project by Daniel Loureiro with a MIT license. Also, it uses MaxMind open source database.
 
 # MaxMind License
 Database and Contents Copyright (c) 2015 MaxMind, Inc.
