@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Daniel Loureiro"]
   spec.email         = ["loureirorg@gmail.com"]
   spec.summary       = %q{Simple list of cities and states of the world}
-  spec.description   = %q{Useful to do forms and validations. It uses MaxMind CC database.}
+  spec.description   = %q{Useful to make forms and validations. It uses MaxMind database.}
   spec.homepage      = "https://github.com/loureirorg/city-state"
   spec.license       = "MIT"
 
