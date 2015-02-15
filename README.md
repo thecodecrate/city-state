@@ -41,6 +41,9 @@ CS.cities(:to)
 # => ["Aparecida do Rio Negro", "Araguaína", "Brejinho de Nazare", "Gurupi", "Itaguatins", "Miracema do Tocantins", "Monte Alegre", "Palmas", "Paraiso do Tocantins", "Parana", "Pedro Afonso", "Porto Nacional", "Presidente Kennedy", "Salvador", "Santo Antonio", "Sao Domingos", "Taguatinga", "Tucum"] 
 ```
 
+# More details about this gem
+http://www.learnwithdaniel.com/2015/02/citystate-list-of-cities-and-states-ruby/
+
 # CityState License
 **city-state** is a open source project by Daniel Loureiro with a MIT license. Also, it uses MaxMind open source database.
 
