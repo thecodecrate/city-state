@@ -2,13 +2,12 @@ require "city-state/version"
 
 module CS
   # CS constants
-  MAXMIND_ZIPPED_CSV = "http://geolite.maxmind.com/download/geoip/database/GeoLite2-City-CSV.zip"
-  CSV_FN = "GeoLite2-City-Locations-en.csv"
+  MAXMIND_ZIPPED_URL = "http://geolite.maxmind.com/download/geoip/database/GeoLite2-City-CSV.zip"
   FILES_FOLDER = File.expand_path('../db', __FILE__)
-  CSV_FN_FULL = File.join(FILES_FOLDER, CSV_FN)
+  MAXMIND_DB_FN = File.join(FILES_FOLDER, "GeoLite2-City-Locations-en.csv")
+  COUNTRIES_FN = File.join(FILES_FOLDER, "countries.yml")
 
-  @cities = {}
-  @states = {}
+  @countries = @states = @cities = {}
   @current_country = nil # :US, :BR, :GB, :JP, ...
 
   def self.update_maxmind
@@ -16,7 +15,7 @@ module CS
     require "zip"
 
     # get zipped file
-    f_zipped = open(MAXMIND_ZIPPED_CSV)
+    f_zipped = open(MAXMIND_ZIPPED_URL)
 
     # unzip file:
     # recursively searches for "GeoLite2-City-Locations-en"
@@ -37,20 +36,22 @@ module CS
     Dir[File.join(FILES_FOLDER, "states.*")].each do |state_fn|
       self.install(state_fn.split(".").last.upcase.to_sym) # reinstall country
     end
-    @cities = @states = {} # invalidades cache
+    @countries = @cities = @states = {} # invalidades cache
+    File.delete COUNTRIES_FN # force countries.yml to be generated at next call of CS.countries
     true
   end
 
   # constants: CVS position
   ID = 0
   COUNTRY = 4
+  COUNTRY_LONG = 5
   STATE = 6
   STATE_LONG = 7
   CITY = 10
 
   def self.install(country)
     # get CSV if doesn't exists
-    update_maxmind unless File.exists? CSV_FN_FULL
+    update_maxmind unless File.exists? MAXMIND_DB_FN
 
     # normalize "country"
     country = country.to_s.upcase
@@ -58,7 +59,7 @@ module CS
     # read CSV line by line
     cities = {}
     states = {}
-    File.foreach(CSV_FN_FULL) do |line|
+    File.foreach(MAXMIND_DB_FN) do |line|
       rec = line.split(",")
       next if rec[COUNTRY] != country
       next if rec[STATE].blank? || rec[CITY].blank?
@@ -142,5 +143,32 @@ module CS
     end
 
     @states[country] || []
+  end
+
+  # list of all countries of the world (countries.yml)
+  def self.countries
+    if ! File.exists? COUNTRIES_FN
+      # countries.yml doesn't exists, extract from MAXMIND_DB
+      update_maxmind unless File.exists? MAXMIND_DB_FN
+
+      # reads CSV line by line
+      File.foreach(MAXMIND_DB_FN) do |line|
+        rec = line.split(",")
+        next if rec[COUNTRY].blank? || rec[COUNTRY_LONG].blank? # jump empty records
+        country = rec[COUNTRY].to_s.upcase.to_sym # normalize to something like :US, :BR
+        if @countries[country].blank?
+          long = rec[COUNTRY_LONG].gsub(/\"/, "") # sometimes names come with a "\" char
+          @countries[country] = long
+        end
+      end
+
+      # sort and save to "countries.yml"
+      @countries = Hash[@countries.sort]
+      File.open(COUNTRIES_FN, "w") { |f| f.write @countries.to_yaml }
+    else
+      # countries.yml exists, just read it
+      @countries = YAML::load_file(COUNTRIES_FN).symbolize_keys
+    end
+    @countries
   end
 end
