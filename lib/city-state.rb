@@ -184,4 +184,12 @@ module CS
     end
     @countries
   end
+
+  # get is a method to simplify the use of city-state
+  # get = countries, get(country) = states(country), get(country, state) = cities(state, country)
+  def self.get(country = nil, state = nil)
+    return self.countries if country.nil?
+    return self.states(country) if state.nil?
+    return self.cities(state, country)
+  end
 end
