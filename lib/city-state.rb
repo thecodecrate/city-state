@@ -7,7 +7,7 @@ module CS
   MAXMIND_DB_FN = File.join(FILES_FOLDER, "GeoLite2-City-Locations-en.csv")
   COUNTRIES_FN = File.join(FILES_FOLDER, "countries.yml")
 
-  @countries = @states = @cities = {}
+  @countries, @states, @cities = [{}, {}, {}]
   @current_country = nil # :US, :BR, :GB, :JP, ...
 
   def self.update_maxmind
@@ -56,13 +56,26 @@ module CS
     # normalize "country"
     country = country.to_s.upcase
 
+    # some state codes are empty: we'll use "states-replace" in these cases
+    states_replace_fn = File.join(FILES_FOLDER, "states-replace.yml")
+    states_replace = YAML::load_file(states_replace_fn).symbolize_keys
+    states_replace = states_replace[country.to_sym] || {} # we need just this country
+    states_replace_inv = states_replace.invert # invert key with value, to ease the search
+
     # read CSV line by line
     cities = {}
     states = {}
     File.foreach(MAXMIND_DB_FN) do |line|
       rec = line.split(",")
       next if rec[COUNTRY] != country
-      next if rec[STATE].blank? || rec[CITY].blank?
+      next if (rec[STATE].blank? && rec[STATE_LONG].blank?) || rec[CITY].blank?
+
+      # some state codes are empty: we'll use "states-replace" in these cases
+      rec[STATE] = states_replace_inv[rec[STATE_LONG]] if rec[STATE].blank?
+      rec[STATE] = rec[STATE_LONG] if rec[STATE].blank? # there's no correspondent in states-replace: we'll use the long name as code
+
+      # some long names are empty: we'll use "states-replace" to get the code
+      rec[STATE_LONG] = states_replace[rec[STATE]] if rec[STATE_LONG].blank?
 
       # normalize
       rec[STATE] = rec[STATE].to_sym
@@ -96,7 +109,7 @@ module CS
   def self.current_country
     return @current_country if @current_country.present?
 
-    # we don't have used this module yet: discover by the file extension
+    # we don't have used this method yet: discover by the file extension
     fn = Dir[File.join(FILES_FOLDER, "cities.*")].last
     @current_country = fn.blank? ? nil : fn.split(".").last
     
@@ -142,7 +155,7 @@ module CS
       @states[country] = YAML::load_file(states_fn).symbolize_keys
     end
 
-    @states[country] || []
+    @states[country] || {}
   end
 
   # list of all countries of the world (countries.yml)
