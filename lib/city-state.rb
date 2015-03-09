@@ -103,6 +103,7 @@ module CS
     cities_fn = File.join(FILES_FOLDER, "cities.#{country.downcase}")
     File.open(states_fn, "w") { |f| f.write states.to_yaml }
     File.open(cities_fn, "w") { |f| f.write cities.to_yaml }
+    File.chmod(0666, states_fn, cities_fn) # force permissions to rw_rw_rw_ (issue #3)
     true
   end
 
@@ -178,6 +179,7 @@ module CS
       # sort and save to "countries.yml"
       @countries = Hash[@countries.sort]
       File.open(COUNTRIES_FN, "w") { |f| f.write @countries.to_yaml }
+      File.chmod(0666, COUNTRIES_FN) # force permissions to rw_rw_rw_ (issue #3)
     else
       # countries.yml exists, just read it
       @countries = YAML::load_file(COUNTRIES_FN).symbolize_keys
