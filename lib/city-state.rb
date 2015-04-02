@@ -36,7 +36,7 @@ module CS
     Dir[File.join(FILES_FOLDER, "states.*")].each do |state_fn|
       self.install(state_fn.split(".").last.upcase.to_sym) # reinstall country
     end
-    @countries = @cities = @states = {} # invalidades cache
+    @countries, @states, @cities = [{}, {}, {}] # invalidades cache
     File.delete COUNTRIES_FN # force countries.yml to be generated at next call of CS.countries
     true
   end
