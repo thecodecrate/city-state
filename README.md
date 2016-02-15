@@ -73,5 +73,5 @@ http://www.learnwithdaniel.com/2015/02/citystate-list-of-cities-and-states-ruby/
 **city-state** is a open source project by Daniel Loureiro with a MIT license. Also, it uses MaxMind open source database.
 
 # MaxMind License
-Database and Contents Copyright (c) 2015 MaxMind, Inc.
+Database and Contents Copyright (c) 2016 MaxMind, Inc.
 This work is licensed under the Creative Commons Attribution 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by/3.0/.
