@@ -146,7 +146,7 @@ module CS
   end
 
   def self.cities_by_country_name(country_name)
-    country_code = countries.select { |code, name| name.downcase == country_name.downcase }.keys.first
+    country_code = countries.select { |code, name| name.downcase == country_name&.downcase }.keys.first
     CountryCity.cities(country_code)
   end
 
