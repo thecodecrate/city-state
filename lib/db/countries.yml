@@ -13,7 +13,7 @@
 :AT: Austria
 :AU: Australia
 :AW: Aruba
-:AX: "Åland"
+:AX: Åland
 :AZ: Azerbaijan
 :BA: Bosnia and Herzegovina
 :BB: Barbados
@@ -24,7 +24,7 @@
 :BH: Bahrain
 :BI: Burundi
 :BJ: Benin
-:BL: Saint-Barthélemy
+:BL: Saint Barthélemy
 :BM: Bermuda
 :BN: Brunei
 :BO: Bolivia
@@ -32,14 +32,15 @@
 :BR: Brazil
 :BS: Bahamas
 :BT: Bhutan
+:BV: Bouvet Island
 :BW: Botswana
 :BY: Belarus
 :BZ: Belize
 :CA: Canada
 :CC: Cocos [Keeling] Islands
-:CD: Congo
+:CD: DR Congo
 :CF: Central African Republic
-:CG: Republic of the Congo
+:CG: Congo Republic
 :CH: Switzerland
 :CI: Ivory Coast
 :CK: Cook Islands
@@ -50,11 +51,11 @@
 :COUNTRY_ISO_CODE: country_name
 :CR: Costa Rica
 :CU: Cuba
-:CV: Cape Verde
+:CV: Cabo Verde
 :CW: Curaçao
 :CX: Christmas Island
 :CY: Cyprus
-:CZ: Czech Republic
+:CZ: Czechia
 :DE: Germany
 :DJ: Djibouti
 :DK: Denmark
@@ -64,6 +65,7 @@
 :EC: Ecuador
 :EE: Estonia
 :EG: Egypt
+:EH: Western Sahara
 :ER: Eritrea
 :ES: Spain
 :ET: Ethiopia
@@ -93,6 +95,7 @@
 :GW: Guinea-Bissau
 :GY: Guyana
 :HK: Hong Kong
+:HM: Heard Island and McDonald Islands
 :HN: Honduras
 :HR: Croatia
 :HT: Haiti
@@ -116,9 +119,9 @@
 :KH: Cambodia
 :KI: Kiribati
 :KM: Comoros
-:KN: Saint Kitts and Nevis
+:KN: St Kitts and Nevis
 :KP: North Korea
-:KR: Republic of Korea
+:KR: South Korea
 :KW: Kuwait
 :KY: Cayman Islands
 :KZ: Kazakhstan
@@ -140,9 +143,9 @@
 :MF: Saint Martin
 :MG: Madagascar
 :MH: Marshall Islands
-:MK: Macedonia
+:MK: North Macedonia
 :ML: Mali
-:MM: Myanmar [Burma]
+:MM: Myanmar
 :MN: Mongolia
 :MO: Macao
 :MP: Northern Mariana Islands
@@ -209,7 +212,7 @@
 :SV: El Salvador
 :SX: Sint Maarten
 :SY: Syria
-:SZ: Swaziland
+:SZ: Eswatini
 :TC: Turks and Caicos Islands
 :TD: Chad
 :TF: French Southern Territories
