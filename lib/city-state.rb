@@ -180,7 +180,7 @@ module CS
           else
             index = @cities[country][state].index(old_value)
             if index.nil?
-              @cities[country][state][] = new_value
+              @cities[country][state].push(new_value)
             else
               @cities[country][state][index] = new_value
             end
