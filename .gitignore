@@ -16,3 +16,6 @@ mkmf.log
 cities.*
 states.*
 db/countries.yml
+.env
+examples/.bundle/
+Gemfile.lock
