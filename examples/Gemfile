@@ -1,0 +1,4 @@
+source 'https://rubygems.org'
+
+gem 'dotenv' # for loading environment variables
+gem 'city-state', path: '../' # referencing the local gem in development
