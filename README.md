@@ -2,6 +2,21 @@
 
 The `city-state` gem offers a straightforward way to retrieve lists of states for any given country and cities for any state. It's built on the MaxMind database, making it a reliable source for such data.
 
+## Compatibility
+
+This branch (`main`) is compatible with **Ruby 3 and higher**. If you are using Ruby 2, please refer to the `v0` branch.
+
+### Ruby 3 and Higher
+
+- This is the primary development branch.
+- New features and improvements will be added here.
+- Ensure you have Ruby 3 or higher to use the versions from this branch.
+
+### Ruby 2 Support
+
+- For Ruby 2 support, please refer to the `v0` branch.
+- The `v0` branch is in maintenance mode, which means it will only receive bug fixes and will not get any new features.
+
 ## Installation
 
 Add the gem to your Gemfile:
