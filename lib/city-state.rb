@@ -173,20 +173,23 @@ module CS
       end
 
       # Process lookup table
-      lookup = get_cities_lookup(country, state)
+      lookup = get_cities_lookup(country)
       if ! lookup.nil?
-        lookup.each do |old_value, new_value|
-          if new_value.nil? || self.blank?(new_value)
-            @cities[country][state].delete(old_value)
-          else
-            index = @cities[country][state].index(old_value)
-            if index.nil?
-              @cities[country][state][] = new_value
+        lookup.each do |state, new_values|
+          new_values.each do |old_value, new_value|
+            if new_value.nil? || self.blank?(new_value)
+              @cities[country][state].delete(old_value)
             else
-              @cities[country][state][index] = new_value
+              index = @cities[country][state].index(old_value)
+              if index.nil?
+                @cities[country][state] << new_value
+              else
+                @cities[country][state][index] = new_value
+              end
             end
           end
         end
+
         @cities[country][state] = @cities[country][state].sort # sort it alphabetically
       end
     end
@@ -210,7 +213,7 @@ module CS
     @countries_lookup    = nil
   end
 
-  def self.get_cities_lookup(country, state)
+  def self.get_cities_lookup(country)
     # lookup file not loaded
     if @cities_lookup.nil?
       @cities_lookup_fn  = DEFAULT_CITIES_LOOKUP_FN if @cities_lookup_fn.nil?
@@ -220,8 +223,8 @@ module CS
       @cities_lookup.each { |key, value| @cities_lookup[key] = self.symbolize_keys(value) } # force states to be symbols
     end
 
-    return nil if ! @cities_lookup.key?(country) || ! @cities_lookup[country].key?(state)
-    @cities_lookup[country][state]
+    return nil if ! @cities_lookup.key?(country)
+    @cities_lookup[country]
   end
 
   def self.get_states_lookup(country)
